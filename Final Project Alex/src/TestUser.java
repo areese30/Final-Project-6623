@@ -102,30 +102,17 @@ public class TestUser {
 
             newOrder.fillCart(quanity, list);
             newOrder.commit();
-            
 
-            String[][] mylist = new String[quanity][2];
-            myhardware = CsvoutParser.parser();
+            System.out.println("Would you like to proceed with your purchase?");
+            decision = input.nextLine();
+            if (decision.equalsIgnoreCase("Yes")) {
+                newOrder.mycommit();
 
-
-            String yourid = "";
-
-            for (int i = 0; i < quanity; i++) {
-                String item = let.nextLine();
-                for (int j = 0; j < myhardware.length; j++) {
-
-                    if (item.equals(myhardware[j][0])) {
-                        yourid = myhardware[j][1];
-                        mylist[i][0] = item;
-                        mylist[i][1] = yourid;
-                        break;
-                    }
-                    newOrder.fillCart(quanity, list);
-                    newOrder.mycommit();
-
-
-                }
+                String[][] mylist = new String[quanity][2];
+                list = mylist;
             }
+
+
             if (Arrays.deepEquals(list,myhardware)){
                 System.out.println("You have some items in your shopping cart that are similar. Would you like to proceed?");
                 choice = again.nextLine();
@@ -135,6 +122,8 @@ public class TestUser {
                     System.out.print("Order Complete");
                 }
             }
+            System.out.println("Thank you for shopping.");
+        }else{
             System.out.println("Thank you for shopping.");
         }
     }
