@@ -39,8 +39,8 @@ public class TestUser {
 
         User newUser = new User(firstname, lastname, cardInfo, address);
 
-        System.out.println("User Object:"); // Output of Person Object
-        System.out.println(newUser);
+//        System.out.println("User Object:"); // Output of Person Object
+//        System.out.println(newUser);
 
         System.out.println();
 
@@ -70,13 +70,13 @@ public class TestUser {
             System.out.println("Enter your username:");
             username = type.nextLine();
             Order newOrder = new Order(orderid, username);
-            System.out.println(newOrder);
+//            System.out.println(newOrder);
             System.out.println("order id created: " + orderid);
 
             System.out.print("How many items would you like to buy? ");
             int quanity = scan.nextInt();
             String[][] list = new String[quanity][2];
-            System.out.print("What item would you like to buy? ");
+            System.out.print("What item would you like to buy? \n");
             for (int i = 0; i < hardware.length; i++) {
                 for (int j = 0; j < hardware[i].length; j++) {
                     System.out.print(hardware[i][j] + " ");
@@ -103,28 +103,37 @@ public class TestUser {
             newOrder.fillCart(quanity, list);
             newOrder.commit();
 
+            String[][] mylist = new String[quanity][2];
             System.out.println("Would you like to proceed with your purchase?");
             decision = input.nextLine();
             if (decision.equalsIgnoreCase("Yes")) {
                 newOrder.mycommit();
+                newOrder.hiscommit();
 
-                String[][] mylist = new String[quanity][2];
+
                 list = mylist;
             }
-
-
-            if (Arrays.deepEquals(list,myhardware)){
-                System.out.println("You have some items in your shopping cart that are similar. Would you like to proceed?");
-                choice = again.nextLine();
-                if (choice.equalsIgnoreCase("yes")){
-                    System.out.print("Order Complete");
-                }else{
-                    System.out.print("Order Complete");
+            if (another.equalsIgnoreCase("Yes")) {
+                if (Arrays.deepEquals(list, mylist)) {
+                    System.out.println("You have some items in your shopping cart that are similar. Would you like to proceed?");
+                    for (int i = 0; i < myhardware.length; i++) {
+                        for (int j = 0; j < myhardware[i].length; j++) {
+                            System.out.print(myhardware[i][j] + " ");
+                        }
+                        System.out.println();
+                    }
+                    choice = again.nextLine();
+                    if (choice.equalsIgnoreCase("yes")) {
+                        newOrder.hiscommit();
+                        System.out.print("Order Complete");
+                    } else {
+                        System.out.print("Order Complete");
+                    }
                 }
             }
-            System.out.println("Thank you for shopping.");
+            System.out.println("\nThank you for shopping.");
         }else{
-            System.out.println("Thank you for shopping.");
+            System.out.println("\nThank you for shopping.");
         }
     }
 }

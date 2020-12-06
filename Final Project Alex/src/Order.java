@@ -66,6 +66,19 @@ public class Order{
         PrintStream console = new PrintStream(new FileOutputStream(FileDescriptor.out));
         System.setOut(console);
     }
+
+    void hiscommit() throws FileNotFoundException {
+        PrintStream out = new PrintStream(new File("Own.csv"));
+        System.setOut(out);
+        for (int i = 0; i < cart.length; i++) {
+            for (int j = 0; j < cart[i].length; j++) {
+                System.out.print(cart[i][j] + " ");
+            }
+            System.out.println();
+        }
+        PrintStream console = new PrintStream(new FileOutputStream(FileDescriptor.out));
+        System.setOut(console);
+    }
     public class shippingInfo{
 
     }
